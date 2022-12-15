@@ -1,7 +1,8 @@
 import { Body, Controller, /* Get,  */ Post } from '@nestjs/common';
-import { SendNotification } from 'src/application/use-cases/send-notification';
+import { SendNotification } from '@application/use-cases/send-notification';
 //import { randomUUID } from 'node:crypto';
 import { CreateNotificationBody } from '../dtos/create-notification-body';
+import { NotificationViewModel } from '../view-models/notification-view-model';
 //import { PrismaService } from '../../prisma.service';
 
 @Controller('notifications')
@@ -23,7 +24,7 @@ export class NotificationsController {
     });
 
     return {
-      notification,
+      notification: NotificationViewModel.toHTTP(notification),
     };
   }
 }
